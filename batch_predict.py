@@ -299,6 +299,7 @@ def run_single_user_prediction(user_id: int):
     if existing:
         existing.cluster_id                = cluster_id
         existing.predicted_cta             = predicted_cta
+        existing.generated_message         = msg
         existing.category_focus            = fav_category
         existing.recommendation_confidence = confidence
         existing.timestamp                 = datetime.now(timezone.utc)
