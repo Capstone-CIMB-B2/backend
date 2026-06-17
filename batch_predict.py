@@ -103,10 +103,11 @@ def run_batch_prediction():
     print(f"DB: {len(db_df)} nasabah.")
 
     if not csv_df.empty and not db_df.empty:
-        existing_ids = set(csv_df['user_id'].tolist())
-        new_users_df = db_df[~db_df['user_id'].isin(existing_ids)]
-        print(f"User baru dari DB: {len(new_users_df)}")
-        scv_df = pd.concat([csv_df, new_users_df], ignore_index=True)
+        existing_in_db = set(db_df['user_id'].tolist())
+        csv_only_df = csv_df[~csv_df['user_id'].isin(existing_in_db)]
+        print(f"User sisa dari CSV yang belum ada di DB: {len(csv_only_df)}")
+        scv_df = pd.concat([db_df, csv_only_df], ignore_index=True)
+        
     elif not csv_df.empty:
         scv_df = csv_df
     elif not db_df.empty:
