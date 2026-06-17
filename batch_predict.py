@@ -94,7 +94,7 @@ def run_batch_prediction():
     # ===========================================================================
     csv_df = pd.DataFrame()
     try:
-        csv_df = pd.read_csv('single_customer_view.csv')
+        csv_df = pd.read_csv('single_customer_view_enriched.csv')
         print(f"CSV seed: {len(csv_df)} nasabah.")
     except FileNotFoundError:
         print("WARNING: CSV seed tidak ditemukan.")
